@@ -63,8 +63,8 @@
                         </div>
                         <div class="plus-minus-btn">
                             <p>
-                            <span class="sign" onclick="productNumber('first-classTicket', true)">+</span>
-                            <span class="sign" onclick="productNumber('first-classTicket', false)">-</span>
+                            <span class="plus" onclick="productNumber('first-classTicket', true)">+</span>
+                            <span class="minus" onclick="productNumber('first-classTicket', false)">-</span>
                             </p>
                         </div>
                         </div>
@@ -76,8 +76,8 @@
                         </div>
                         <div class="plus-minus-btn">
                             <p>
-                              <span class="sign" onclick="productNumber('economy-class', true)">+</span>
-                              <span class="sign" onclick="productNumber('economy-class', false)">-</span>
+                              <span class="plus" onclick="productNumber('economy-class', true)">+</span>
+                              <span class="minus" onclick="productNumber('economy-class', false)">-</span>
                             </p>
                         </div>
                         </div>
@@ -96,7 +96,7 @@
                             <p>Charge 10% VAT</p>
                             </div>
                             <div class="right">
-                            <p id="vat">$ <span>0</span></p>
+                            <p id="tax">$ <span>0</span></p>
                             </div>
                         </div>
                         <hr />
@@ -105,7 +105,7 @@
                                <h4>Total</h4>
                             </div>
                             <div class="right">
-                              <p id="total">$ <span>0</span></p>
+                              <p id="grand-total">$ <span>0</span></p>
                             </div>
                         </div>
                         </div>
@@ -129,15 +129,15 @@
                  
             function productNumber(id, isIncrease) {
             const ticketCount = document.getElementById(id).value;
-            const ticket = parseInt(ticketCount);
+            const ticketQuantity = parseInt(ticketCount);
 
             if (isIncrease == true) {
-                ticketNew = ticket + 1;
+                ticketNewCount = ticketQuantity + 1;
             }
-            if (isIncrease == false && ticket > 0) {
-                ticketNew = ticket - 1;
+            if (isIncrease == false && ticketQuantity > 0) {
+                ticketNewCount = ticketQuantity - 1;
             }
-            document.getElementById(id).value = ticketNew;
+            document.getElementById(id).value = ticketNewCount;
             calculate();
             }
 
@@ -146,10 +146,10 @@
             let economyClassTicket = document.getElementById('economy-class');
 
             function calculate() {
-            const total = firstClassTicket.value * 150 + economyClassTicket.value * 100;
-            document.getElementById('sub-total').innerText = total;
-            document.getElementById('vat').innerText = '$' + total * 0.1;
-            document.getElementById('total').innerText = '$' + (total + total * 0.1);
+            const subTotal = firstClassTicket.value * 150 + economyClassTicket.value * 100;
+            document.getElementById('sub-total').innerText = subTotal;
+            document.getElementById('tax').innerText = '$' + subTotal * 0.1;
+            document.getElementById('grand-total').innerText = '$' + (subTotal + subTotal * 0.1);
             }
 
             //  message for empty ticket
